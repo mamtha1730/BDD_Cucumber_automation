@@ -3,14 +3,17 @@ package Pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 import junit.framework.Assert;
 
-public class Homepage {
+public class Homepage extends Basepage {
 
-		WebDriver driver;
+		
+		public Homepage(WebDriver driver)
+		{
+			super(driver);
+		}
 		@FindBy(css=".app_logo")
 		WebElement lbl_success;
 		
@@ -56,40 +59,30 @@ public class Homepage {
 		@FindBy(id="back-to-products")
 		WebElement Back_home_btn;
 				
-				public Homepage(WebDriver  driver)
-				{
-					
-					PageFactory.initElements(driver,this);
-				}
+		@FindBy(xpath="//select[@class='product_sort_container']")
+		WebElement select_item;
+				
 
-				public void verifysuccess_login()
+				public String  verifymomepage()
 				{
-					Assert.assertEquals(lbl_success.getText(), "Swag Labs");
+					String text=lbl_success.getText();
+					return text;
 				}
 				public void clickmenubutton()
 				{
 					btn_menu.click();
 					
 				}
-				public void clickabout()
-				{
-					btn_about.click();
-				}
 				
-				public void checkaboutitems()
+				public void select_name() throws InterruptedException
 				{
-					String actual_title = driver.getTitle();
-					String expected_title = "Sauce Labs: Cross Browser Testing, Selenium Testing & Mobile Testing";
-					if(driver.getTitle().contains("Sauce Labs: Cross Browser Testing, Selenium Testing & Mobile Testing"))
-							{
-						System.out.println("Page Title contains Sauce Labs: Cross Browser Testing, Selenium Testing & Mobile Testing");
-							}
-					else 
-					{
-						System.out.println("Invalid page title");
-							}
+					Select sel=new Select(select_item);
+					sel.selectByIndex(3);
+					Thread.sleep(5000);
 					
 				}
+				
+				
 				public void user_clicks_logout_button()
 				{
 					btn_logout.click();
@@ -139,13 +132,7 @@ public class Homepage {
 				{
 					Back_home_btn.click();
 				}
-				public void select_button_click()
-				{
-					//dropdown.click();
-					Select select1 = new Select(dropdown);
-					select1.selectByIndex(1);
 				
-				}
 
 		
 
