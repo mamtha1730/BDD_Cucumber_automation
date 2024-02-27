@@ -65,7 +65,7 @@ public class BuyItemSteps {
 	public void validate_success_buy()
 	{
 		hp= new Homepage(Hooks.getDriver()); 
-		hp.verifymomepage();
+		hp.verifyhomepage();
 	}
 
 

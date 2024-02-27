@@ -61,9 +61,24 @@ public class Homepage extends Basepage {
 				
 		@FindBy(xpath="//select[@class='product_sort_container']")
 		WebElement select_item;
+		
+		@FindBy(xpath="//a[@id='logout_sidebar_link']")
+		WebElement txt_logout;
 				
+		public boolean isLoginSuccess()
+		{
+			boolean bool=lbl_success.isDisplayed();
+			return bool;
+		}
+		
+		public void clicklogout()
+		{
+			btn_menu.click();
+			txt_logout.click();
+			
+		}
 
-				public String  verifymomepage()
+				public String  verifyhomepage()
 				{
 					String text=lbl_success.getText();
 					return text;
